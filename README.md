@@ -4,7 +4,7 @@ The purpose of CiteSet is to capture project-related information. My goal was to
 
 At the same time, CiteSet represents what I think is the simplest possible solution that can work for an archetypal kind of modern application: the application must be composed of independent parts, and it must have various well-known layers (data for persistence, service for supporting various user interface designs, and application for managing service lifecycle). 
 
-![CiteSet_Static_Full](/images/CiteSet_Static_Full.png "CiteSet Static Full")
+![CiteSet_Static_Full](doc/wiki/images/CiteSet_Static_Full.png "CiteSet Static Full")
 
 GENERAL CHARACTERISTICS
 -----------------------
@@ -14,7 +14,7 @@ DATA LAYER
 ----------
 In my case, I don't need robust persistence and I prefer working with plain-old objects when the data has little chance of being aggregated, so I chose to use [Db4o](http://www.db4o.com/) (ask me about my [MembershipProvider](http://msdn.microsoft.com/en-us/library/system.web.security.membershipprovider.aspx) implementation for Db4o sometime!). The Db4o logic is straightforward, the API is clean, and the file structure doesn't have the complexity of other object stores like [RavenDB](http://ravendb.net).
 
-![CiteSet_Static_Data_Layer](images/CiteSet_Static_Data_Layer.png "CiteSet Static Data Layer")
+![CiteSet_Static_Data_Layer](doc/wiki/images/CiteSet_Static_Data_Layer.png "CiteSet Static Data Layer")
 
 SERVICE LAYER
 -------------
@@ -22,13 +22,13 @@ The service layer is RESTful for the sake of simplicity. Similar to the choice o
 
 The most novel element of the service layer, and the beginning of the batch processing that I want, is the PageAdapter and ResourceBridge which will work together to read the link and meta tags from a web page and add them to the data store. This basically saves me from adding tags everytime I add a web reference to a project. True, I might end up with some SEO garbage, but I think it's better to remove the metadata I don't need than to slow down the process of adding.
 
-![CiteSet_Static_Service_Layer](images/CiteSet_Static_Service_Layer.png "CiteSet Static Service Layer")
+![CiteSet_Static_Service_Layer](doc/wiki/images/CiteSet_Static_Service_Layer.png "CiteSet Static Service Layer")
 
 APPLICATION LAYER
 -----------------
 Finally, the application layer manages the lifecycle of the database and service endpoints. Ideally, the RESTful service would be accessed by multiple clients, so a Windows service made the most sense as host. Besides, I didn't want users to have to install a web server; so CiteSet is as self-contained and minimalistic as it can possibly be.
 
-![CiteSet_Static_Application_Layer](images/CiteSet_Static_Application_Layer.png  "CiteSet Static Application Layer.png")
+![CiteSet_Static_Application_Layer](doc/wiki/images/CiteSet_Static_Application_Layer.png  "CiteSet Static Application Layer.png")
 
 INSTALLATION
 ------------
