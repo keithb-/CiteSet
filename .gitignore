@@ -1,0 +1,5 @@
+#Ignore the directories in .\release. Only the *.7z files will be tracked.
+release/CiteSet*/
+#Ignore all the bin and obj directories in the src.
+src/*/bin/
+src/*/obj/

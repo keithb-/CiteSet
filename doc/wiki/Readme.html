@@ -1,0 +1,111 @@
+﻿<!--
+Copyright (c) 2012 by Keith R. Bielaczyc. All Right Reserved.
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>README</title>
+<style lang="en" type="text/css">
+body { font-family: Bookman Old Style, Calibri, Verdana, Arial; 
+       font-size: 12pt;
+       width: 6in; }
+h1 { font-family:Lucida Sans, Arial; font-size: 12pt; font-weight: bold; }
+footer { font-size: 9pt; color: Gray; }
+</style>
+</head>
+<body>
+<article>
+<h1>PURPOSE</h1>
+<p>The purpose of CiteSet is to capture project-related information. My goal was to simplify 
+the wonderful ideas of projects like <a href="http://chandlerproject.org">Chandler</a>, 
+<a href="http://delicious.com">Delicious</a>, and 
+<a href="http://rednotebook.sourceforge.net">RedNotebook</a>. For example, I wanted a place 
+to store information about software projects that I had started. I might have source files, 
+journal entries, Internet resources and links. All of this information needed to be culled 
+into a single spot where I could easily manage my musings. 
+</p>
+<p>At the same time, CiteSet represents what I think is the simplest possible solution that 
+can work for an archetypal kind of modern application: the application must be composed 
+of independent parts, and it must have various well-known layers (data for persistence, 
+service for supporting various user interface designs, and application for managing 
+service lifecycle). 
+</p>
+<img src="images/CiteSet_Static_Full.png" alt="CiteSet_Static_Full.png" />
+<h1>GENERAL CHARACTERISTICS</h1>
+<p>Generally speaking, CiteSet is config-driven so things like database connection strings 
+and RESTful service endpoints are defined in the configuration files. Additionally, each 
+component uses the <a href="http://msdn.microsoft.com/en-us/library/ff648951.aspx">Microsoft Enterpise Libary</a>
+to inject new instances at runtime which means that logging can be selectively enabled in the 
+configuration files. Finally, the service endpoints are supported by a configuration extention 
+that defines a Factory class. This means that new Factory implementations can be added 
+later, as needed.
+</p>
+<h1>DATA LAYER</h1>
+<p>In my case, I don't need robust persistence and I prefer working with plain-old objects 
+when the data has little chance of being aggregated, so I chose to use 
+<a href="http://www.db4o.com/">Db4o</a> (ask me about my 
+<a href="http://msdn.microsoft.com/en-us/library/system.web.security.membershipprovider.aspx">MembershipProvider</a>
+implementation for Db4o sometime!). The Db4o logic is straightforward, the API is clean, 
+and the file structure doesn't have the complexity of other object stores 
+like <a href="http://ravendb.net">RavenDB</a>.
+</p>
+<img src="images/CiteSet_Static_Data_Layer.png" alt="CiteSet_Static_Data_Layer.png" />
+<h1>SERVICE LAYER</h1>
+<p>The service layer is RESTful for the sake of simplicity. Similar to the choice of Db4o, 
+RESTful services are expected to subscribe to well-known paradigms which make them easy 
+for developers to leverage. In this case, I chose to expose two endpoints: 
+1) projects and 2) resources. Projects represent the highest level container for 
+project-related data and information. Resources represent files and links that are 
+associated with a project either directly or tangentally. These two entities seemed 
+like the most obvious to be manipulated, and I had plans to build in some batch import 
+features, so for now these are the two exposed endpoints. The addressability relies on 
+GUIDs which is ugly, but gets the job done.
+</p>
+<p>The most novel element of the service layer, and the beginning of the batch 
+processing that I want, is the PageAdapter and ResourceBridge which will work together to 
+read the link and meta tags from a web page and add them to the data store. This basically 
+saves me from adding tags everytime I add a web reference to a project. True, I might 
+end up with some SEO garbage, but I think it's better to remove the metadata I don't need 
+than to slow down the process of adding.
+</p>
+<img src="images/CiteSet_Static_Service_Layer.png" alt="CiteSet_Static_Service_Layer.png" />
+<h1>APPLICATION LAYER</h1>
+<p>Finally, the application layer manages the lifecycle of the database and service 
+endpoints. Ideally, the RESTful service would be accessed by multiple clients, so a 
+Windows service made the most sense as host. Besides, I didn't want users to have to 
+install a web server; so CiteSet is as self-contained and minimalistic as it can possibly be.
+</p>
+<img src="images/CiteSet_Static_Application_Layer.png" alt="CiteSet_Static_Application_Layer.png" />
+<h1>INSTALLATION</h1>
+<p>To install the application, unzip the release package to the directory of your choice. 
+The release package contains:
+</p>
+<ul>
+<li>A console application for temporary deployments or developing,</li>
+<li>A Windows service application for long-running deployments,</li>
+<li>Batch files for installing and uninstalling the Windows service.</li>
+</ul>
+<p>Each application has its own configuration file. The &lt;connectionStrings&gt; section 
+contains a single connection string for the database service. The format conforms to 
+the <a href="http://msdn.microsoft.com/en-us/library/system.uri.aspx">Uri class</a>, but it 
+is essentially a file path; the value of the AbsolutePath represents a directory 
+rooted at <code>C:\</code>. The default location is in the root, but could be changed 
+to something like <code>/Users/&lt;someuser_name&gt;/AppData/Local</code>, if desired.
+</p>
+<p>Both the database and service endpoints have port numbers that might be blocked by 
+the local firewall, so it might be necessary to allow these ports to transmit data.
+</p>
+</article>
+<footer>
+<p>Keith Bielaczyc</p>
+<p>Last modified: 2012-09-16</p>
+</footer> 
+</body>
+</html>

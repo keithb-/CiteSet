@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Simple interface for accessing the entity service and manipulating entities.">
+    <Position X="0.5" Y="0.5" Height="0.75" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Shallow hierarchy of entities for storing information about projects.">
+    <Position X="0.5" Y="3.223" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="CiteSet.Model.EntityBase" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAQAAAAAAAAAAAgAAAQAEAAAAAAABAAAAAAA=</HashCode>
+      <FileName>EntityBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CiteSet.Model.EntityContext" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABIAAACAEIAAgAAAQACAAAAEIAIAIAEgAAACAAAA=</HashCode>
+      <FileName>EntityContext.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CiteSet.Model.JournalEntry" Collapsed="true">
+    <Position X="1.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>JournalEntry.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CiteSet.Model.KeyGenerator" Collapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>KeyGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CiteSet.Model.Project" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAKAAgAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Project.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CiteSet.Model.Resource" Collapsed="true">
+    <Position X="1.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEIAAAAAAAAAAAAACAgACAAAAAAEAAA=</HashCode>
+      <FileName>Resource.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CiteSet.Model.ResourceLink" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAkAAAAAAAAAAAAAAAABAAQAAAAAAAAA=</HashCode>
+      <FileName>ResourceLink.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CiteSet.Model.ResourceMeta" Collapsed="true">
+    <Position X="4.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ResourceMeta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CiteSet.Model.IEntityContext">
+    <Position X="2.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAIAAgAAAQAAAAAAEIAAAAAEAAAACAAAA=</HashCode>
+      <FileName>IEntityContext.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
